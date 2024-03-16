@@ -2,8 +2,8 @@ import sanityClient from "@sanity/client";
 import imageUrlBuilder from "@sanity/image-url";
 
 const client = sanityClient({
-  projectId: "2hr3wtag",
-  dataset: "production",
+  projectId: "s0atti9j",
+  dataset: "idcre",
 });
 const builder = imageUrlBuilder(sanityClient);
 
