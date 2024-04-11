@@ -15,7 +15,11 @@ function HomePage() {
 
   useEffect(() => {
     const query = `*[_type == 'siteSettings'][0] {
-  logo,
+    logo {
+      asset-> {
+        url
+      }
+    },
   userName,
   links[] {
     title,
@@ -27,7 +31,9 @@ function HomePage() {
     sanityClient
       .fetch(query)
       .then((data) => {
-        setLogo(data.logo || "");
+        const logoUrl = data.logo && data.logo.asset && data.logo.asset.url;
+
+        setLogo(logoUrl || "");
         setUserName(data.userName || "");
         setLinks(data.links || []);
         setLoading(false);
@@ -84,7 +90,7 @@ function HomePage() {
               @{userName}
             </div>
           </div>
-          <div className="social-icons-container">
+          {/* <div className="social-icons-container">
             <div className="social-icons-container">
               <div className="page-social relative">
                 <a
@@ -175,8 +181,7 @@ function HomePage() {
                 </a>
               </div>
 
-              {/* Repeat the above structure for each social media icon */}
-              {/* ... */}
+              
 
               <div className="page-social relative">
                 <a
@@ -196,8 +201,14 @@ function HomePage() {
                 </a>
               </div>
             </div>
-          </div>
-          <div id="links">
+          </div> */}
+          <div
+            id="links"
+            style={{
+              marginTop: "3rem",
+              zIndex: 24,
+            }}
+          >
             {links.map((link, index) => (
               <div key={index}>
                 <a

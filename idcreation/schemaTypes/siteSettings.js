@@ -7,8 +7,8 @@ export default {
   fields: [
     {
       name: 'logo',
-      title: 'Logo URL',
-      type: 'url',
+      title: 'Logo Image',
+      type: 'image',
     },
     {
       name: 'userName',
